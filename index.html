@@ -24,7 +24,7 @@
 .tab.on{background:var(--green); border-color:var(--green); color:#fff;}
 .tab.on .tc{color:#d7ecdc;}
 .tab:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
-.panels{position:relative;}
+.panels{position:relative; overflow:hidden;}
 .panel{position:absolute; top:0; left:0; width:100%; visibility:hidden; opacity:0; transition:opacity .22s ease, visibility 0s .22s; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,30px);}
 .panel.on{position:relative; visibility:visible; opacity:1; transition:opacity .22s ease;}
 .panel h2{font-size:clamp(17px,2.4vw,22px); line-height:1.3; margin:0 0 20px; color:var(--green-dk);}
@@ -37,7 +37,8 @@
 @media(min-width:1000px){.panel ol{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:760px){.tabs{grid-template-columns:1fr;} .panel ol{grid-template-columns:1fr;}}
 @media(prefers-reduced-motion:reduce){.panel,.panel.on,.tab{transition:none;}}
-html,body{margin:0; padding:0; background:#fff; overflow-x:hidden;}
+html,body{margin:0; padding:0; background:#fff;}
+html{overflow-x:hidden;}
 </style>
 </head>
 <body>
