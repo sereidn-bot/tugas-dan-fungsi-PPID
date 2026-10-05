@@ -17,16 +17,16 @@
 .hero h1{position:relative; z-index:1; font-size:clamp(26px,4.6vw,42px); line-height:1.15; font-weight:800; margin:0 0 12px; max-width:15em;}
 .hero p{position:relative; z-index:1; margin:0; max-width:40em; color:#cfe3d4; font-size:clamp(13px,1.6vw,15px);}
 .tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px;}
-.tab{font:inherit; text-align:left; cursor:pointer; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; color:var(--green-dk); transition:transform .18s, box-shadow .18s, background .18s;}
+.tab{font:inherit; text-align:left; cursor:pointer; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; color:var(--green-dk); transition:box-shadow .18s, background .18s, border-color .18s;}
 .tab .tn{display:block; font-weight:800; font-size:15px;}
 .tab .tc{display:block; font-size:12px; color:var(--muted); margin-top:2px;}
-.tab:hover{transform:translateY(-2px); box-shadow:0 6px 14px rgba(11,61,32,.10);}
+.tab:hover{box-shadow:0 6px 14px rgba(11,61,32,.10);}
 .tab.on{background:var(--green); border-color:var(--green); color:#fff;}
 .tab.on .tc{color:#d7ecdc;}
 .tab:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
-.panel{display:none; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,30px);}
-.panel.on{display:block; animation:rise .35s ease both;}
-@keyframes rise{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+.panels{position:relative;}
+.panel{position:absolute; top:0; left:0; width:100%; visibility:hidden; opacity:0; transition:opacity .22s ease, visibility 0s .22s; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,30px);}
+.panel.on{position:relative; visibility:visible; opacity:1; transition:opacity .22s ease;}
 .panel h2{font-size:clamp(17px,2.4vw,22px); line-height:1.3; margin:0 0 20px; color:var(--green-dk);}
 .panel ol{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:12px;}
 .panel li{display:flex; gap:14px; align-items:flex-start; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px;}
@@ -36,7 +36,7 @@
 .updated{font-size:12px; color:var(--muted); text-align:center; margin:20px 0 0; padding-top:14px; border-top:1px solid #e2e8db;}
 @media(min-width:1000px){.panel ol{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:760px){.tabs{grid-template-columns:1fr;} .panel ol{grid-template-columns:1fr;}}
-@media(prefers-reduced-motion:reduce){.panel.on{animation:none;} .tab{transition:none;}}
+@media(prefers-reduced-motion:reduce){.panel,.panel.on,.tab{transition:none;}}
 html,body{margin:0; padding:0; background:#fff; overflow-x:hidden;}
 </style>
 </head>
@@ -49,20 +49,27 @@ html,body{margin:0; padding:0; background:#fff; overflow-x:hidden;}
 
   <div class="tabs" role="tablist"><button class="tab on" role="tab" data-t="utama" aria-selected="true"><span class="tn">PPID Utama</span><span class="tc">9 tugas</span></button><button class="tab" role="tab" data-t="pelaksana" aria-selected="false"><span class="tn">PPID Pelaksana</span><span class="tc">7 tugas</span></button><button class="tab" role="tab" data-t="fakultas" aria-selected="false"><span class="tn">PPID Pelaksana Fakultas</span><span class="tc">6 tugas</span></button></div>
 
+<div class="panels">
 <section class="panel on" id="p-utama" role="tabpanel"><h2>Tugas dan Tanggung Jawab PPID Utama</h2><ol><li><span class="no">1</span><p>Menyusun, melaksanakan kebijakan layanan informasi publik;</p></li><li><span class="no">2</span><p>Menyusun laporan pelaksanaan kebijakan layanan informasi publik;</p></li><li><span class="no">3</span><p>Mengkoordinasi dan mengonsolidasi proses penyimpanan, pendokumentasian, penyediaan dan pelayanan informasi di Lingkungan Universitas Andalas;</p></li><li><span class="no">4</span><p>Melakukan verifikasi dokumen dan menentukan informasi publik yang dapat diakses publik dan dipublikasikan;</p></li><li><span class="no">5</span><p>Melakukan pengujian konsekuensi atas informasi publik yang dikecualikan dengan persetujuan Atasan PPID;</p></li><li><span class="no">6</span><p>Melakukan pengelolaan, pemeliharaan dan pemutakhiran daftar informasi publik;</p></li><li><span class="no">7</span><p>Menyediakan informasi publik yang dapat diakses dengan efisien dan efektif bagi publik;</p></li><li><span class="no">8</span><p>Melakukan pembinaan, pengawasan, evaluasi dan monitoring atas pelaksanaan kebijakan teknis informasi publik yang dilakukan oleh PPID pelaksana petugas layanan informasi;</p></li><li><span class="no">9</span><p>Memberikan dan/atau menolak informasi publik yang dikecualikan kepada pemohon informasi dengan menyampaikan pertimbangan secara tertulis atas persetujuan Atasan PPID.</p></li></ol></section>
 <section class="panel" id="p-pelaksana" role="tabpanel"><h2>Tugas Pejabat Pengelola Informasi dan Dokumentasi Pelaksana di Lingkungan Universitas Andalas</h2><ol><li><span class="no">1</span><p>Menyediakan, menyimpan, mendokumentasikan dan mengamankan informasi publik;</p></li><li><span class="no">2</span><p>Memberikan pelayanan informasi sesuai dengan aturan yang berlaku;</p></li><li><span class="no">3</span><p>Memberikan pelayanan informasi publik yang cepat, tepat, dan sederhana;</p></li><li><span class="no">4</span><p>Memberikan prosedur operasional penyebarluasan informasi publik;</p></li><li><span class="no">5</span><p>Mengklarifikasi informasi dan/atau pengubahannya;</p></li><li><span class="no">6</span><p>Menetapkan informasi yang dikecualikan yang telah habis jangka waktu pengecualiannya sebagai informasi publik yang dapat diakses;</p></li><li><span class="no">7</span><p>Menetapkan pertimbangan tertulis atas setiap kebijakan yang diambil untuk memenuhi hak setiap orang atas informasi publik.</p></li></ol></section>
 <section class="panel" id="p-fakultas" role="tabpanel"><h2>Tugas dan Tanggung Jawab PPID Pelaksana Fakultas</h2><ol><li><span class="no">1</span><p>Membantu PPID Pelaksana Universitas untuk melaksanakan tanggung jawab, tugas dan kewenangannya;</p></li><li><span class="no">2</span><p>Melaksanakan kebijakan teknis layanan informasi publik yang telah ditetapkan di lingkungan Fakultas/unit Universitas Andalas;</p></li><li><span class="no">3</span><p>Mengonsolidasikan proses penyimpanan, pendokumentasian, penyediaan dan pelayanan informasi publik di lingkungan Universitas Andalas;</p></li><li><span class="no">4</span><p>Mengumpulkan dokumen informasi publik dari petugas pelayanan informasi di Fakultas/unit;</p></li><li><span class="no">5</span><p>Membantu melakukan verifikasi dokumen informasi publik;</p></li><li><span class="no">6</span><p>Menjamin ketersediaan dan akselerasi layanan informasi publik di Fakultas/unit.</p></li></ol></section>
+</div>
 
   <p class="updated">Diperbarui: Oktober 2026</p>
 </div>
 <script>
+if(window.self!==window.top){ document.documentElement.style.overflowY='hidden'; }
 (function(){
   var tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel');
   tabs.forEach(function(t){
     t.addEventListener('click',function(){
+      var next=document.getElementById('p-'+t.dataset.t), cur=document.querySelector('.panel.on');
+      if(next===cur) return;
+      /* kabari halaman induk soal tinggi baru SEBELUM panel diganti, supaya iframe tidak telat/loncat */
+      var target=Math.ceil(document.body.getBoundingClientRect().bottom+window.scrollY)-cur.offsetHeight+next.offsetHeight;
+      window.parent.postMessage({ ppidFrameHeight: target }, '*');
       tabs.forEach(function(x){var on=x===t; x.classList.toggle('on',on); x.setAttribute('aria-selected',on);});
-      panels.forEach(function(p){p.classList.toggle('on',p.id==='p-'+t.dataset.t);});
-      setTimeout(sendHeight,50);
+      panels.forEach(function(p){p.classList.toggle('on',p===next);});
     });
   });
 })();
